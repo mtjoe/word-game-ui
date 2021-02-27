@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -7,6 +7,6 @@ const Home = () => {
       <Link to="/game">Start Game</Link>
     </div>
   );
-}
+};
 
 export default Home;
