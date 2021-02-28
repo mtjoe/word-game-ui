@@ -1,12 +1,14 @@
 import React, { FunctionComponent } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ApolloProvider } from "@apollo/client";
 import Home from "./Home";
 import Game from "./Game";
+import client from "./client";
 import "./App.css";
 
 const App: FunctionComponent = () => {
   return (
-    <div>
+    <ApolloProvider client={client}>
       <Router>
         <Switch>
           <Route path="/game">
@@ -17,7 +19,7 @@ const App: FunctionComponent = () => {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </ApolloProvider>
   );
 };
 
