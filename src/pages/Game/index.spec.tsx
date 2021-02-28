@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
-import Game from "./Game";
-import { START_GAME } from "./gql/game.gql";
+import Game from ".";
+import { START_GAME } from "../../gql/game.gql";
 import { MemoryRouter } from "react-router-dom";
 
 describe("Game", () => {

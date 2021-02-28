@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
-import Home from "./Home";
-import Game from "./Game";
+import Home from "./pages/Home";
+import Game from "./pages/Game";
 import client from "./client";
 import "./App.css";
 
