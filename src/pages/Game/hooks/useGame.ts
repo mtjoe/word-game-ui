@@ -5,8 +5,6 @@ import {
   StartGame_startGame_combinations,
 } from "../../../gql/types/StartGame";
 
-export type HookContent = { entries?: WordEntry[] };
-
 const getInitialEntries = (
   combinations: StartGame_startGame_combinations[]
 ): WordEntry[] =>
@@ -14,6 +12,11 @@ const getInitialEntries = (
     filled: false,
     size: combination.word.length,
   }));
+
+type HookContent = {
+  entries?: WordEntry[];
+  letters?: string[];
+};
 
 const useGame = (game: StartGame_startGame | undefined): HookContent => {
   const [entries] = useState(
@@ -24,7 +27,7 @@ const useGame = (game: StartGame_startGame | undefined): HookContent => {
     return {};
   }
 
-  return { entries };
+  return { entries, letters: game.letters };
 };
 
 export default useGame;
