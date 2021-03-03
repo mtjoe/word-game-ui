@@ -33,8 +33,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Potential Improvements
 
-- [ ] Add in more game examples in backend, currently only have one game
-- [ ] Move game state to backend
+- [ ] Add in more game examples in backend, currently only returns one game
+- [ ] Replay game
 - [ ] Improve styling
 - [ ] Upgrade GameBoard to be crossword puzzle style
+- [ ] Move game state to backend
 - [ ] Make into multiplayer
