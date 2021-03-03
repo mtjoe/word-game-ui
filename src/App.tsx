@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Game from "./pages/Game";
 import client from "./client";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App: FunctionComponent = () => {
   return (

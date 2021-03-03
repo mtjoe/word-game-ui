@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import { START_GAME } from "../../gql/game.gql";
 import { StartGame } from "../../gql/types/StartGame";
 import GameBoard from "./components/GameBoard";
@@ -13,7 +14,7 @@ const Game: FunctionComponent = () => {
   const { entries, letters, guessWord } = useGame(data?.startGame);
 
   return (
-    <div>
+    <Container>
       <Link to="/">Leave Game</Link>
 
       {loading && <p>Loading...</p>}
@@ -22,7 +23,7 @@ const Game: FunctionComponent = () => {
       {letters && <GameLetters letters={letters} />}
       {guessWord && <GameInput guessWord={guessWord} />}
       {entries && <GameBoard entries={entries} />}
-    </div>
+    </Container>
   );
 };
 

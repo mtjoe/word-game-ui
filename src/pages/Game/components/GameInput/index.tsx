@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FunctionComponent } from "react";
+import { Button, Form, Col } from "react-bootstrap";
 
 type Props = {
   guessWord: (word: string) => boolean;
@@ -16,16 +17,25 @@ const GameInput: FunctionComponent<Props> = ({ guessWord }: Props) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        name="word"
-        aria-label="word"
-        value={word}
-        onChange={(event) => setWord(event.target.value)}
-      />
-      <input type="submit" value="Guess" />
-    </form>
+    <Form onSubmit={onSubmit}>
+      <Form.Row className="align-items-center">
+        <Col xs="auto">
+          <Form.Control
+            type="text"
+            name="word"
+            aria-label="word"
+            value={word}
+            autoComplete="off"
+            onChange={(event) => setWord(event.target.value)}
+          />
+        </Col>
+        <Col xs="auto">
+          <Button variant="primary" type="submit">
+            Guess
+          </Button>
+        </Col>
+      </Form.Row>
+    </Form>
   );
 };
 
