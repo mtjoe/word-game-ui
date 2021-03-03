@@ -5,6 +5,7 @@ import { START_GAME } from "../../gql/game.gql";
 import { StartGame } from "../../gql/types/StartGame";
 import GameBoard from "./components/GameBoard";
 import GameLetters from "./components/GameLetters";
+import GameInput from "./components/GameInput";
 import useGame from "./hooks/useGame";
 
 const Game: FunctionComponent = () => {
@@ -19,6 +20,7 @@ const Game: FunctionComponent = () => {
       {error && <p>{error.message}</p>}
 
       {letters && <GameLetters letters={letters} />}
+      {data && <GameInput guessWord={(word) => console.log(word)} />}
       {entries && <GameBoard entries={entries} />}
     </div>
   );
