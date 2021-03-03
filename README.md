@@ -1,6 +1,6 @@
 # Word Game UI
 
-Frontend app for a Word Game. The backend of this site is located in ....
+Frontend app for a Word Game. The backend of this site is located [here](https://github.com/mtjoe/word-game-express-api).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
