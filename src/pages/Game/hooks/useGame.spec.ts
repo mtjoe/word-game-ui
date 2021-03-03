@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
+import { act } from "react-test-renderer";
 import { StartGame_startGame } from "../../../gql/types/StartGame";
 import useGame from "./useGame";
 
@@ -33,15 +34,41 @@ describe("useGame", () => {
   it("should return initial entries", () => {
     const { result } = renderHook(() => useGame(game));
 
-    expect(result.current.entries).toStrictEqual([
-      { filled: false, size: 3 },
-      { filled: false, size: 6 },
-    ]);
+    expect(result.current.entries).toStrictEqual({
+      0: { filled: false, word: "bed" },
+      1: { filled: false, word: "batter" },
+    });
   });
 
   it("should return letters", () => {
     const { result } = renderHook(() => useGame(game));
 
     expect(result.current.letters).toStrictEqual(["a", "b", "c", "d", "e"]);
+  });
+
+  it("should set filled as true if word is guessed correctly", () => {
+    const { result } = renderHook(() => useGame(game));
+
+    act(() => {
+      result.current.guessWord("bed");
+    });
+
+    expect(result.current.entries).toStrictEqual({
+      0: { filled: true, word: "bed" },
+      1: { filled: false, word: "batter" },
+    });
+  });
+
+  it("should not change filled value if word is guessed incorrectly", () => {
+    const { result } = renderHook(() => useGame(game));
+
+    act(() => {
+      result.current.guessWord("incorrect");
+    });
+
+    expect(result.current.entries).toStrictEqual({
+      0: { filled: false, word: "bed" },
+      1: { filled: false, word: "batter" },
+    });
   });
 });

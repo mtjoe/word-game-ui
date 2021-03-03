@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { FunctionComponent } from "react";
 
 type Props = {
-  guessWord: (word: string) => void;
+  guessWord: (word: string) => boolean;
 };
 
 const GameInput: FunctionComponent<Props> = ({ guessWord }: Props) => {
   const [word, setWord] = useState("");
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    guessWord(word);
+    if (guessWord(word)) {
+      setWord("");
+    }
     event.preventDefault();
   };
 

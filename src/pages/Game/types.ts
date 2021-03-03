@@ -1,11 +1,5 @@
-export type FilledWordEntry = {
-  filled: true;
+export type WordEntry = {
+  filled: boolean;
   word: string;
 };
-
-export type EmptyWordEntry = {
-  filled: false;
-  size: number;
-};
-
-export type WordEntry = FilledWordEntry | EmptyWordEntry;
+export type WordEntries = { [index: number]: WordEntry };

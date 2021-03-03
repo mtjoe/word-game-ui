@@ -13,7 +13,7 @@ describe("GameBoard", () => {
   });
 
   it("should render `_` with the size of word, if word has not been filled", () => {
-    const entries: WordEntry[] = [{ filled: false, size: 5 }];
+    const entries: WordEntry[] = [{ filled: false, word: "paper" }];
 
     render(<GameBoard entries={entries} />);
 
