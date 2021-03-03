@@ -14,7 +14,7 @@ const GameBoard: FunctionComponent<Props> = ({ entries }: Props) => {
           case true:
             return <p key={index}>{entry.word}</p>;
           case false:
-            return "_ ".repeat(entry.size);
+            return <p key={index}>{"_ ".repeat(entry.size)}</p>;
         }
       })}
     </div>
