@@ -11,14 +11,16 @@ const App: FunctionComponent = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Switch>
-          <Route path="/game">
-            <Game />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <div className="App-header">
+          <Switch>
+            <Route path="/game">
+              <Game />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
       </Router>
     </ApolloProvider>
   );
