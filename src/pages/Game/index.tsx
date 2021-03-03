@@ -11,7 +11,7 @@ import useGame from "./hooks/useGame";
 
 const Game: FunctionComponent = () => {
   const { loading, error, data } = useQuery<StartGame>(START_GAME);
-  const { entries, letters, guessWord } = useGame(data?.startGame);
+  const { entries, letters, guessWord, hasWon } = useGame(data?.startGame);
 
   return (
     <Container>
@@ -23,6 +23,8 @@ const Game: FunctionComponent = () => {
       {letters && <GameLetters letters={letters} />}
       {guessWord && <GameInput guessWord={guessWord} />}
       {entries && <GameBoard entries={entries} />}
+
+      {hasWon && <p>You&apos;ve Won!</p>}
     </Container>
   );
 };

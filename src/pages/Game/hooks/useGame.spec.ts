@@ -25,10 +25,12 @@ describe("useGame", () => {
     ],
   };
 
-  it("should return empty object if game is not defined", () => {
+  it("should return object if game is not defined", () => {
     const { result } = renderHook(() => useGame(undefined));
 
-    expect(result.current).toStrictEqual({});
+    expect(result.current).toStrictEqual({
+      hasWon: false,
+    });
   });
 
   it("should return initial entries", () => {
@@ -70,5 +72,32 @@ describe("useGame", () => {
       0: { filled: false, word: "bed" },
       1: { filled: false, word: "batter" },
     });
+  });
+
+  it("should initially set hasWon to false", () => {
+    const { result } = renderHook(() => useGame(game));
+
+    expect(result.current.hasWon).toBe(false);
+  });
+
+  it("should not set hasWon to true if all entries are not filled", () => {
+    const { result } = renderHook(() => useGame(game));
+
+    act(() => {
+      result.current.guessWord("bed");
+    });
+
+    expect(result.current.hasWon).toBe(false);
+  });
+
+  it("should set hasWon to true if all entries are filled", () => {
+    const { result } = renderHook(() => useGame(game));
+
+    act(() => {
+      result.current.guessWord("bed");
+      result.current.guessWord("batter");
+    });
+
+    expect(result.current.hasWon).toBe(true);
   });
 });

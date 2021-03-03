@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { WordEntries } from "../types";
 import {
   StartGame_startGame,
@@ -19,19 +19,33 @@ const getInitialEntries = (
     {}
   );
 
+const checkIfWin = (entries: WordEntries) => {
+  return Object.values(entries).filter((entry) => !entry.filled).length === 0;
+};
+
 type HookContent = {
   entries?: WordEntries;
   letters?: string[];
   guessWord?: (word: string) => boolean;
+  hasWon: boolean;
 };
 
 const useGame = (game: StartGame_startGame | undefined): HookContent => {
+  const [hasWon, setHasWon] = useState<boolean>(false);
   const [entries, setEntries] = useState<WordEntries | undefined>(
     () => game && getInitialEntries(game.combinations)
   );
 
-  if (!game) {
-    return {};
+  useEffect(() => {
+    if (entries && checkIfWin(entries)) {
+      setHasWon(true);
+    }
+  }, [entries]);
+
+  if (!game || !entries) {
+    return {
+      hasWon: false,
+    };
   }
 
   const guessWord = (word: string): boolean => {
@@ -54,7 +68,7 @@ const useGame = (game: StartGame_startGame | undefined): HookContent => {
     return true;
   };
 
-  return { entries, letters: game.letters, guessWord };
+  return { entries, letters: game.letters, guessWord, hasWon };
 };
 
 export default useGame;
